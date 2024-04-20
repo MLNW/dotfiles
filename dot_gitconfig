@@ -1,0 +1,21 @@
+[user]
+    name = Lucas Resch
+    email = lucas.resch@gmx.de
+
+[core]
+    autocrlf = false
+    editor = vim
+    longpaths = true
+    commentChar = ";"
+
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+
+[pull]
+    ff = only
+
+[init]
+    defaultBranch = trunk
