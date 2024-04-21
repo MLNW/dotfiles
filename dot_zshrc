@@ -122,5 +122,10 @@ export EDITOR='vim'
 bindkey "^[[5~" history-substring-search-up
 bindkey "^[[6~" history-substring-search-down
 
+# Check if zoxide is installed before initializing
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+fi
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
