@@ -109,6 +109,10 @@ key=(
 
 export EDITOR='vim'
 
+alias k='kubectl'
+alias kn='k config set-context --current --namespace'
+alias kcc='k config get-contexts'
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
