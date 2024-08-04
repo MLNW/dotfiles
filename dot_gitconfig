@@ -2,11 +2,20 @@
     name = Lucas Resch
     email = lucas.resch@gmx.de
 
+[branch]
+    sort = -committerdate
+
 [core]
     autocrlf = false
     editor = vim
     longpaths = true
     commentChar = ";"
+
+[commit]
+    verbose = true
+
+[diff]
+    algorithm = histogram
 
 [filter "lfs"]
     clean = git-lfs clean -- %f
@@ -14,8 +23,15 @@
     process = git-lfs filter-process
     required = true
 
+[init]
+    defaultBranch = trunk
+
 [pull]
     ff = only
 
-[init]
-    defaultBranch = trunk
+[push]
+    autoSetupRemote = true
+
+[rerere]
+    enabled = true
+
