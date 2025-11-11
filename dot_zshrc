@@ -86,10 +86,11 @@ zstyle ':autocomplete:list-choices:*' min-input 3
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    asdf
-    git
-    history-substring-search
-    tmux
+  git
+  history-substring-search
+  kubectl
+  rust
+  tmux
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -99,15 +100,15 @@ source $ZSH/oh-my-zsh.sh
 # Define key map
 # Source: https://unix.stackexchange.com/a/405358
 key=(
-    BackSpace  "${terminfo[kbs]}"
-    Home       "${terminfo[khome]}"
-    End        "${terminfo[kend]}"
-    Insert     "${terminfo[kich1]}"
-    Delete     "${terminfo[kdch1]}"
-    Up         "${terminfo[kcuu1]}"
-    Down       "${terminfo[kcud1]}"
-    Left       "${terminfo[kcub1]}"
-    Right      "${terminfo[kcuf1]}"
+  BackSpace  "${terminfo[kbs]}"
+  Home       "${terminfo[khome]}"
+  End        "${terminfo[kend]}"
+  Insert     "${terminfo[kich1]}"
+  Delete     "${terminfo[kdch1]}"
+  Up         "${terminfo[kcuu1]}"
+  Down       "${terminfo[kcud1]}"
+  Left       "${terminfo[kcub1]}"
+  Right      "${terminfo[kcuf1]}"
 )
 
 export EDITOR='vim'
