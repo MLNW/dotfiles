@@ -1,0 +1,8 @@
+#!/bin/sh
+# chezmoi manages ONLY statusLine; every other key in settings.json stays machine-local.
+# Plugins/marketplaces are handled by run_onchange_after_claude-plugins.sh, which
+# lets the claude CLI write enabledPlugins and extraKnownMarketplaces itself.
+set -eu
+current=$(cat)
+[ -n "$current" ] || current='{}'
+printf '%s' "$current" | jq '.statusLine = {type: "command", command: "~/.claude/statusline.sh", padding: 2}'

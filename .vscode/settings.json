@@ -1,0 +1,8 @@
+{
+  // chezmoi modify_ scripts are named after their target file, so the
+  // extension describes the output, not the script language.
+  "files.associations": {
+    "**/modify_*": "shellscript",
+    "**/run_*": "shellscript"
+  }
+}
