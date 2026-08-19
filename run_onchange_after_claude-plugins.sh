@@ -11,15 +11,21 @@ if ! command -v claude >/dev/null 2>&1; then
   exit 0
 fi
 
-# "<marketplace repo> <plugin>@<marketplace>"
-set -- \
-  'mattpocock/skills mattpocock-skills@mattpocock' \
-  'DietrichGebert/ponytail ponytail@ponytail' \
-  'JuliusBrussee/caveman caveman@caveman'
+install_marketplace() {
+  repo=$1
+  shift
 
-for entry in "$@"; do
-  repo=${entry%% *}
-  plugin=${entry#* }
-  claude plugin marketplace add "$repo" || { printf 'marketplace add failed: %s\n' "$repo" >&2; continue; }
-  claude plugin install "$plugin" || printf 'plugin install failed: %s\n' "$plugin" >&2
-done
+  claude plugin marketplace add "$repo" || { printf 'marketplace add failed: %s\n' "$repo" >&2; return; }
+  for plugin in "$@"; do
+    claude plugin install "$plugin" || printf 'plugin install failed: %s\n' "$plugin" >&2
+  done
+}
+
+install_marketplace 'mattpocock/skills' \
+  'mattpocock-skills@mattpocock'
+
+install_marketplace 'DietrichGebert/ponytail' \
+  'ponytail@ponytail'
+
+install_marketplace 'JuliusBrussee/caveman' \
+  'caveman@caveman'
