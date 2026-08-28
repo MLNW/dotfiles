@@ -1,0 +1,2 @@
+[plugins.tools]
+hk = "file://./.proto/plugins/hk.toml"

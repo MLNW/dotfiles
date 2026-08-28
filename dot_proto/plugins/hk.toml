@@ -1,0 +1,20 @@
+name = "HK"
+type = "cli"
+
+[resolve]
+git-url = "https://github.com/jdx/hk"
+
+[platform.linux]
+download-file = "hk-{arch}-unknown-linux-gnu.tar.gz"
+
+[platform.macos]
+download-file = "hk-{arch}-apple-darwin.tar.gz"
+
+[platform.windows]
+download-file = "hk-{arch}-pc-windows-msvc.zip"
+
+[install]
+download-url = "https://github.com/jdx/hk/releases/download/v{version}/{download_file}"
+
+[install.exes.hk]
+primary = true
