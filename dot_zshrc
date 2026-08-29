@@ -113,11 +113,6 @@ key=(
 
 export EDITOR='vim'
 
-pong() {
-  local target="$1"
-  ping -W 1 $target | while read pong; do echo "$(date): $pong"; done
-}
-
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -130,21 +125,6 @@ pong() {
 # Source: https://unix.stackexchange.com/a/248789
 bindkey "^[[5~" history-substring-search-up
 bindkey "^[[6~" history-substring-search-down
-
-# Check if zoxide is installed before initializing
-if command -v zoxide >/dev/null 2>&1; then
-  eval "$(zoxide init zsh)"
-fi
-
-# Check if mise is installed and executable before initializing
-if [[ -x "$HOME/.local/bin/mise"  ]]; then
-  eval "$($HOME/.local/bin/mise activate zsh)"
-fi
-
-# bun
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

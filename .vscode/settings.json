@@ -3,6 +3,7 @@
   // extension describes the output, not the script language.
   "files.associations": {
     "**/modify_*": "shellscript",
-    "**/run_*": "shellscript"
+    "**/run_*": "shellscript",
+    "dot_zshrc": "shellscript"
   }
 }
