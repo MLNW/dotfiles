@@ -129,7 +129,7 @@ if [ -n "$transcript" ]; then
 fi
 
 append_limit_segment "$h5" "$h5r" "$FIVE_HOUR_WINDOW_SECONDS" "$([ -n "$h5r" ] && fmt_time "$h5r" '%H:%M')"
-append_limit_segment "$d7" "$d7r" "$SEVEN_DAY_WINDOW_SECONDS" "$([ -n "$d7r" ] && fmt_time "$d7r" '%a')"
+append_limit_segment "$d7" "$d7r" "$SEVEN_DAY_WINDOW_SECONDS" "$([ -n "$d7r" ] && if [ "$(fmt_time "$d7r" '%F')" = "$(fmt_time "$now" '%F')" ]; then fmt_time "$d7r" '%H:%M'; else fmt_time "$d7r" '%a'; fi)"
 
 if [ "${added:-0}" -gt 0 ] || [ "${removed:-0}" -gt 0 ]; then
   append_segment "${GRN}+${added:-0}${R}/${RED}-${removed:-0}${R}"
