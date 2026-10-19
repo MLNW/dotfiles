@@ -51,3 +51,16 @@ install_marketplace 'DietrichGebert/ponytail' \
 
 install_marketplace 'JuliusBrussee/caveman' \
   'caveman@caveman'
+
+install_marketplace 'karanb192/claude-code-hooks'
+# Hook guards
+install_plugins \
+  'case-insensitive-guard@claude-code-hooks' \
+  'instructions-audit@claude-code-hooks' \
+  'protect-secrets@claude-code-hooks'
+# Logging and auditing
+install_plugins \
+  'cache-tax@claude-code-hooks' \
+  'context-hogs@claude-code-hooks' \
+  'dead-rules-audit@claude-code-hooks' \
+  'session-logger@claude-code-hooks'
