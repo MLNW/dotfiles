@@ -11,14 +11,36 @@ if ! command -v claude >/dev/null 2>&1; then
   exit 0
 fi
 
+settings_file="$HOME/.claude/settings.json"
+
+marketplace_is_configured() {
+  [ -f "$settings_file" ] &&
+    jq -e --arg repo "$1" '
+      .extraKnownMarketplaces? | to_entries[]? |
+      select(.value.source.source == "github" and .value.source.repo == $repo)
+    ' "$settings_file" >/dev/null
+}
+
+plugin_is_enabled() {
+  [ -f "$settings_file" ] &&
+    jq -e --arg plugin "$1" '.enabledPlugins?[$plugin] == true' "$settings_file" >/dev/null
+}
+
+install_plugins() {
+  for plugin in "$@"; do
+    plugin_is_enabled "$plugin" && continue
+    claude plugin install "$plugin" || printf 'plugin install failed: %s\n' "$plugin" >&2
+  done
+}
+
 install_marketplace() {
   repo=$1
   shift
 
-  claude plugin marketplace add "$repo" || { printf 'marketplace add failed: %s\n' "$repo" >&2; return; }
-  for plugin in "$@"; do
-    claude plugin install "$plugin" || printf 'plugin install failed: %s\n' "$plugin" >&2
-  done
+  if ! marketplace_is_configured "$repo"; then
+    claude plugin marketplace add "$repo" || { printf 'marketplace add failed: %s\n' "$repo" >&2; return; }
+  fi
+  install_plugins "$@"
 }
 
 install_marketplace 'mattpocock/skills' \
