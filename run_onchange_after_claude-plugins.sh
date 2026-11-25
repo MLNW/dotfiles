@@ -52,6 +52,9 @@ install_marketplace 'DietrichGebert/ponytail' \
 install_marketplace 'JuliusBrussee/caveman' \
   'caveman@caveman'
 
+install_marketplace 'cursor/plugins' \
+  'pstack@cursor-plugins'
+
 install_marketplace 'karanb192/claude-code-hooks'
 # Hook guards
 install_plugins \
